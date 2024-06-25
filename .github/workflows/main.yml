@@ -1,4 +1,4 @@
-# Test 2024-06-25 at 19:43:04
+# Test 2024-06-25 at 20:19:25
 
 name: Test
 
@@ -17,6 +17,10 @@ jobs:
       with:
         ref: 'main'
 
-    - name: Java
+    - name: Java - Hello World
       run:
         java HelloWorld.java
+
+    - name: Java - Employee
+      run:
+        java Employee.java
