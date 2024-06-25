@@ -1,5 +1,6 @@
 public abstract class Employee                                                  // Employee compensation by Vanina
  {String name, lastName, accountNumber;
+  static int passed = 0;                                                        // Number of tests passed
 
   Employee() {}
 
@@ -13,9 +14,9 @@ public abstract class Employee                                                  
    {return "Se depositó a la cuenta de: " + accountNumber;
    }
 
-  abstract double calculateSalary();
+  abstract double calculateSalary();                                            // Salary for employee depends on employee type
 
-  String calculateTotalSalary()
+  String calculateTotalSalary()                                                 // Total salary for employee
    {String response = "La liquidación no pudo ser calculada";
     double sueldo = calculateSalary();
     if (sueldo < 0) throw new ClassCastException("La liquidación no pudo ser calculada");
@@ -67,24 +68,36 @@ public abstract class Employee                                                  
   final static Employee.Effective  effectiveEmployeeException  = new Employee.Effective ("Juan",     "Perez",   "123456", 1000d, 2000d, 50d);
   final static Employee.Contractor contractorEmployeeException = new Employee.Contractor("Pompilia", "Pompini", "654321", -10d,   100d);
 
-  static void testCalculateEffectiveOk()
+  static void test_CalculateEffectiveOk()
    {String e = "La liquidación generada es: un documento impreso Saldo a liquidar: 420.0";
     String r = effectiveEmployee.calculateTotalSalary();
     assert e.equals(r);
+    passed++;
    }
 
-  static void testCalculateContractorErrorPrint()
+  static void test_CalculateContractor()
    {String e = "La liquidación generada es: un documento impreso Saldo a liquidar: 8040.0";
     String r = contractorEmployee.calculateTotalSalary();
     assert e.equals(r);
+    passed++;
    }
 
-  public static void main(String[] args)                                        // Test
-   {System.out.println("Work Phil!");
-    var e = new Employee.Effective("Juan", "Perez", "aaa123", 100d, 10d, 60d);
-    System.out.println(e.name);
-    testCalculateEffectiveOk();
-    testCalculateContractorErrorPrint();
+  static void test_CalculateContractorErrorPrint()
+   {String e = "java.lang.ClassCastException: La liquidación no pudo ser calculada";
+    try
+     {String r = contractorEmployeeException.calculateTotalSalary();
+     }
+    catch(ClassCastException x)
+     {assert(e.toString().equals(x.toString()));
+      passed++;
+     }
+   }
+
+  public static void main(String[] args)                                        // Run the tests
+   {test_CalculateEffectiveOk();
+    test_CalculateContractor();
+    test_CalculateContractorErrorPrint();
+    say("Passed", passed, "tests");
    }
 
   static void say(Object...O)
