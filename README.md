@@ -1,2 +1,2 @@
 # RunJava
-Runa  java prgram as an a ction
+Run a java program as a github action
