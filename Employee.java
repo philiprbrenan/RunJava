@@ -7,12 +7,11 @@ public abstract class Employee                                                  
    }
 
   abstract String sendPayCheck();                                               // Imprimir recibo
+  abstract double calculateSalary();                                            // Salary for employee depends on employee type
 
   String depositarSueldo()                                                      // Depositarlo
    {return "Se depositó a la cuenta de: " + accountNumber;
    }
-
-  abstract double calculateSalary();                                            // Salary for employee depends on employee type
 
   String calculateTotalSalary()                                                 // Total salary for employee
    {String response = "La liquidación no pudo ser calculada";
@@ -37,7 +36,6 @@ public abstract class Employee                                                  
      }
 
     double calculateSalary() {return basicSalary + bonus - discounts;}
-
     String sendPayCheck   () {return "un documento impreso";}
    }
 
