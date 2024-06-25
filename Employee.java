@@ -1,5 +1,5 @@
 public abstract class Employee                                                  // Employee compensation by Vanina
- {String name, lastName, accountNumber;
+ {final String name, lastName, accountNumber;
   static int passed = 0;                                                        // Number of tests passed
 
   Employee(String Name, String LastName, String AccountNumber)
@@ -14,18 +14,16 @@ public abstract class Employee                                                  
    }
 
   String calculateTotalSalary()                                                 // Total salary for employee
-   {String response = "La liquidación no pudo ser calculada";
-    double sueldo = calculateSalary();
+   {final double sueldo = calculateSalary();
     if (sueldo < 0) throw new ClassCastException("La liquidación no pudo ser calculada");
 
-    String paycheck = sendPayCheck();                                           // Emitimos recibo porque el sueldo es mayor a 0
-    response = "La liquidación generada es: " + paycheck + " Saldo a liquidar: " + sueldo; // Pisamos la respuesta con un nuevo String
+    final String paycheck = sendPayCheck();                                     // Emitimos recibo porque el sueldo es mayor a 0
     String payment = depositarSueldo();                                         // Deposito solo porque lo pide el enunciado
-    return response;
+    return "La liquidación generada es: " + paycheck + " Saldo a liquidar: " + sueldo; // Pisamos la respuesta con un nuevo String
    }
 
-  static class Effective extends Employee                                       // Effective employee
-   {double basicSalary, discounts, bonus;
+  final static class Effective extends Employee                                 // Effective employee
+   {final double basicSalary, discounts, bonus;
 
     Effective(String Name, String LastName, String AccountNumber,
       double BasicSalary, double Discounts, double Bonus)
@@ -39,8 +37,8 @@ public abstract class Employee                                                  
     String sendPayCheck   () {return "un documento impreso";}
    }
 
-  static class Contractor extends Employee                                      // Contract employee
-   {double hoursWorked, rate;
+  final static class Contractor extends Employee                                // Contract employee
+   {final double hoursWorked, rate;
 
     Contractor(String Name, String lastName, String AccountNumber,
       double HoursWorked, double Rate)
