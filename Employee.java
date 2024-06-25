@@ -2,8 +2,6 @@ public abstract class Employee                                                  
  {String name, lastName, accountNumber;
   static int passed = 0;                                                        // Number of tests passed
 
-  Employee() {}
-
   Employee(String Name, String LastName, String AccountNumber)
    {name = Name; lastName = LastName; accountNumber = AccountNumber;
    }
@@ -38,8 +36,6 @@ public abstract class Employee                                                  
       bonus       = Bonus;
      }
 
-    Effective() {}
-
     double calculateSalary() {return basicSalary + bonus - discounts;}
 
     String sendPayCheck   () {return "un documento impreso";}
@@ -54,8 +50,6 @@ public abstract class Employee                                                  
       hoursWorked = HoursWorked;
       rate        = Rate;
      }
-
-    Contractor() {}
 
     double calculateSalary() {return hoursWorked * rate;}
     String sendPayCheck   () {return "un documento impreso";}
