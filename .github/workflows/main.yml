@@ -1,0 +1,22 @@
+# Test 2024-06-25 at 19:43:04
+
+name: Test
+
+on:
+  push:
+    paths:
+      - '**/main.yml'
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: 'main'
+
+    - name: Java
+      run:
+        java HelloWorld.java
